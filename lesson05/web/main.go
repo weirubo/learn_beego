@@ -1,8 +1,8 @@
 package main
 
 import (
-	_ "web/routers"
 	beego "github.com/astaxie/beego/server/web"
+	_ "web/routers"
 )
 
 func main() {
