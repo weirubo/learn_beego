@@ -9,7 +9,7 @@ import _ "github.com/go-sql-driver/mysql"
 
 type User struct {
 	Id      uint64    `form:"-" orm:"auto;pk;description(主键 ID)"`
-	Name    string    `form:"name" orm:"unique;size(30)";description(用户名)`
+	Name    string    `form:"name" orm:"unique;size(30);description(用户名)"`
 	Age     uint8     `orm:"index;description(年龄)"`
 	Created time.Time `orm:"auto_now_add;type(datetime)"`
 	Updated time.Time `orm:"auto_now;type(datetime)"`
