@@ -4,3 +4,4 @@
 4. [Golang 语言 Web 框架 beego v2 之控制器方法和输入输出数据](https://mp.weixin.qq.com/s/Ninj5ZIFRUQIqeHLOBNUEw)
 5. [Golang 语言 Web 框架 beego v2 之模板](https://mp.weixin.qq.com/s/XwMyBNX23MxktEViflnRow)
 6. [Golang 语言 Web 框架 beego v2 之写操作](https://mp.weixin.qq.com/s/2yUuMucrogX38Xg9VG4coA)
+7. [Golang 语言 Web 框架 beego v2 之读操作](https://mp.weixin.qq.com/s/MViuc12PCzcV-YDT9110Zg)
