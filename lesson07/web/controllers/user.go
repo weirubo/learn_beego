@@ -22,6 +22,11 @@ func (u *UserController) Read() {
 	// 	Id: 2,
 	// }
 	// err := o.Read(user)
+
+	// user := &models.User{
+	// 	Name: "Lucy",
+	// }
+	// err := o.Read(user, "Name")
 	// if err != nil {
 	// 	log.Fatalln(err.Error())
 	// 	return
@@ -38,12 +43,16 @@ func (u *UserController) Read() {
 	// 	return
 	// }
 	// fmt.Printf("Created:%t,id:%d\n", created, id)
-	// fmt.Printf("user:%+v", user)
+	// fmt.Printf("user:%+v\n", user)
 
 	// 高级查询
 
 	// One
 	// var user models.User
+	// string 类型的表名
+	// err := o.QueryTable("beego_user").One(&user)
+	// 结构体的地址
+	// err := o.QueryTable(&user).One(&user)
 	// 使用对象作为表名
 	// err := o.QueryTable(new(models.User)).One(&user)
 	// 指定返回字段，其他字段返回字段类型的零值
@@ -55,7 +64,7 @@ func (u *UserController) Read() {
 	// fmt.Printf("user:%+v\n", user)
 
 	// All
-	// var users []models.User
+	var users []models.User
 	// rows, err := o.QueryTable("beego_user").All(&users)
 	// 指定返回字段，其他字段返回字段类型的零值
 	// rows, err := o.QueryTable("beego_user").All(&users, "Id", "Name")
@@ -65,8 +74,16 @@ func (u *UserController) Read() {
 	// }
 	// fmt.Printf("rows:%d users:%+v\n", rows, users)
 
+	// Count 查询记录数
+	// num, err := o.QueryTable(new(models.User)).Count()
+	// if err != nil {
+	// 	log.Fatalln(err.Error())
+	// 	return
+	// }
+	// fmt.Println("num:", num)
+
 	// 条件查询
-	var users []models.User
+	// var users []models.User
 	// Filter 包含
 	// 表达式和操作符
 	// 等于
@@ -119,25 +136,22 @@ func (u *UserController) Read() {
 	// num, err := o.QueryTable(new(models.User)).OrderBy("-id").All(&users)
 
 	// Distinct 去重
-	num, err := o.QueryTable(new(models.User)).Filter("id__gt", 9).Distinct().All(&users)
-	// num, err := o.QueryTable(new(models.User)).Filter("id__gt", 9).All(&users)
+	num, err := o.QueryTable(new(models.User)).Filter("id__gt", 9).Distinct().All(&users, "Age")
 
 	// Exist 是否存在
 	// isExisted := o.QueryTable(new(models.User)).Filter("name__exact", "frank1").Exist()
 	// fmt.Println("isExisted:", isExisted)
 
-	// Count 查询记录数
-	// num, err = o.QueryTable(new(models.User)).Count()
 	// if err != nil {
 	// 	log.Fatalln(err.Error())
 	// 	return
 	// }
-	// fmt.Println("num:", num)
+	// fmt.Printf("user:%+v\n", users)
 
 	// 原生 sql 查询
 	// 单条查询
 	// var user models.User
-	// err = o.Raw("SELECT id,name,age FROM beego_user WHERE id = ?", 2).QueryRow(&user)
+	// err := o.Raw("SELECT id,name,age FROM beego_user WHERE id = ?", 2).QueryRow(&user)
 	// if err != nil {
 	// 	log.Fatalln(err.Error())
 	// 	return
@@ -145,7 +159,7 @@ func (u *UserController) Read() {
 	// fmt.Printf("user:%+v\n", user)
 	// 多条查询
 	// ids := []int{1,3,5}
-	// num, err = o.Raw("SELECT id,name,age FROM beego_user WHERE id IN (?,?,?)", ids).QueryRows(&users)
+	// num, err := o.Raw("SELECT id,name,age FROM beego_user WHERE id IN (?,?,?)", ids).QueryRows(&users)
 	if err != nil {
 		log.Fatalln(err.Error())
 		return
